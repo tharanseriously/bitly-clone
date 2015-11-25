@@ -4,6 +4,7 @@ class Url < ActiveRecord::Base
 	validates :long_url, format: { with: URI.regexp(%w(http https)) }
 
 	before_create :shorten
+
 	def shorten
 		self.short_url = SecureRandom.hex(6)
 	end

@@ -1,6 +1,4 @@
 get '/' do
-	puts "[LOG] Getting /"
-	puts "[LOG] Params: #{params.inspect}"
 	@urls = Url.all.order(:id)
 	erb :"static/index"
 end
@@ -8,7 +6,11 @@ end
 post '/urls' do
 	url = Url.create(long_url: params[:input_url])
 
-	redirect "/"
+	if url.invalid?
+		erb :"static/error"
+	end
+
+	# redirect "/"
 end
 
 get '/:short_url' do
