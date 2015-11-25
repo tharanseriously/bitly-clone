@@ -1,7 +1,7 @@
 get '/' do
 	puts "[LOG] Getting /"
 	puts "[LOG] Params: #{params.inspect}"
-	@urls = Url.all
+	@urls = Url.all.order(:id)
 	erb :"static/index"
 end
 
@@ -13,6 +13,7 @@ end
 
 get '/:short_url' do
 	url = Url.find_by(short_url: params[:short_url])
+	url.count
 
 	unless url.nil?
 		redirect url.long_url
@@ -20,3 +21,4 @@ get '/:short_url' do
 		redirect "/"
 	end
 end
+

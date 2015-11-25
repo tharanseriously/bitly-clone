@@ -6,5 +6,9 @@ class Url < ActiveRecord::Base
 		self.short_url = SecureRandom.hex(6)
 	end
 
-	stud
+	def count
+		self.click_count += 1
+		self.save
+	end
+
 end
