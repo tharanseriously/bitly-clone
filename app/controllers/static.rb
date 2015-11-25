@@ -1,13 +1,17 @@
 get '/' do
 	@urls = Url.all.order(:id)
+	@url = Url.new
 	erb :"static/index"
 end
 
 post '/urls' do
-	url = Url.create(long_url: params[:input_url])
+	@urls =Url.all.order(:id)
+	@url = Url.new(long_url: params[:input_url])
 
-	if url.invalid?
-		erb :"static/error"
+	if @url.save
+		redirect "/"
+	else
+		erb :"static/index"
 	end
 
 	# redirect "/"

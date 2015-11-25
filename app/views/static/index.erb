@@ -6,6 +6,10 @@
 	<input type="submit" value="Submit">
 </form>
 
+<%= @url.errors.full_messages.each {|x| x}%><br>
+
+<br>
+
 <% @urls.each do |url| %>
 	<%= url.long_url%> - <a href=<%=url.short_url%>> <%= url.short_url %> </a> <%= '  CLICK COUNT =  ' %> <%= url.click_count%><br>
 <% end %>
