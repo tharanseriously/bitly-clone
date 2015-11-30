@@ -1,15 +1,78 @@
-<h1>Hello World</h1>
+<h1>SHORT.ify</h1>
+<center>
+	<div class = "input_bar">
 
-<form action="/urls" method="post">
-	Enter URL:
-	<input type ="text" name="input_url">
-	<input type="submit" value="Submit">
-</form>
+		<form id="target" action="/urls" method="post">
+			<input id ='long_url' type ="text" placeholder = 'Paste your URL here. :D' name="long_url">
+			<input type="submit" value="SHORTify" class='submit'>
+		</form>
 
-<%= @url.errors.full_messages.each {|x| x}%><br>
+	</div>
+</center>
 
-<br>
+<%= @url.errors.full_messages.each {|x| puts x}%>
 
-<% @urls.each do |url| %>
-	<%= url.long_url%> - <a href=<%=url.short_url%>> <%= url.short_url %> </a> <%= '  CLICK COUNT =  ' %> <%= url.click_count%><br>
-<% end %>
+<div class="clear"></div>
+<div class="container">
+	<div class="row">
+		<div class="headline">
+			<h2>FOLLOW THESE 3 STEPS</h2>
+				<div class="row">
+					<div class="column">
+
+						<img class="round" src="/img/copy.png">
+
+            			<p>
+              				<span>Step 1: </br>
+              				COPY THE LINK </span>
+
+            			</p>
+
+          			</div>
+
+          			<div class="column">
+
+						<img class="round" src="/img/paste.png">
+						
+            			<p>
+              				<span>Step 1: </br>
+              				PASTE THE LINK </span>
+
+            			</p>
+
+          			</div>
+
+          			<div class="column">
+
+						<img class="round" src="/img/click.png">
+						
+            			<p>
+              				<span>Step 1: </br>
+              				SHORTify! </span>
+
+            			</p>
+
+          			</div>
+          		</div>
+          	</div>
+        </div>
+    </div>
+
+<table class="url_table" id = "table_id">
+    <tr >
+      	<td class="firstrow"> ID</td>
+      	<td class="firstrow">Long url</td>
+      	<td class="firstrow">Short url</td>
+      	<td class="firstrow">Click_counter</td>
+    </tr>
+
+  	<% @urls.each do |url|%>
+    <tr>
+      	<td class="tab_row"><%= url.id%></td>
+      	<td class="tab_row"><%= url.long_url%></td>
+      	<td class="tab_row"><a href = <%= url.short_url%> ><%= url.short_url%></a></td>
+      	<td class="tab_row"><%= url.click_counter%></td>
+    </tr>
+  	<% end%>
+
+</table>
